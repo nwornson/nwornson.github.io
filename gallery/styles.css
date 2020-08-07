@@ -1,0 +1,119 @@
+body {
+	background-color: black;
+}
+
+.container {
+	align-items: center;
+}
+
+.row-centered {  
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+  
+  }
+
+
+.col-centered {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    float: none;
+    margin-right: 0 auto; 
+}
+
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+h2 { 
+   position: absolute;
+   /* top: 200px; 
+   left: 75px;  */
+   width: 100%; 
+}
+
+#topright {
+	left: 475px;
+	top: 200px;
+}
+
+#botright {
+	left: 575px;
+	top: 600px;
+}
+
+#topleft {
+	left: 150px;
+	top: 200px;
+}
+
+#botleft {
+	left: 75px;
+	top: 600px;
+}
+h2 span { 
+	color: white; 
+	font: bold 24px/45px Helvetica, Sans-Serif; 
+	letter-spacing: -1px;  
+	/*
+	background: rgb(0, 0, 0); fallback color 
+	background: rgba(0, 0, 0, 0.7);
+	*/
+	padding: 10px; 
+ }
+
+.imgs {
+
+	width: 400px;
+	height: 400px;
+	opacity: .7;
+}
+
+.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+  
+	> .col,
+	> [class*="col-"] {
+	  padding-right: 0;
+	  padding-left: 0;
+	}
+}
+
+
+
+
+
+
+
+.imgs-u {
+	padding-top: 50px;
+	width: 200px;
+
+}
+
+.imgs-l {
+	padding-top: 250;
+	width: 200px;
+
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 2%;
+	align-items: start;
+}
+
+.column {
+	display: grid;
+	justify-items: center;
+	grid-template-rows: 1fr;
+	grid-auto-rows: 300px;
+}
+
+
+
