@@ -54,6 +54,26 @@ h2 {
 	left: 75px;
 	top: 600px;
 }
+
+@media  (max-width: 900px) {
+	#topright {
+	  	left: 150px;
+		  top: 540px;
+		  color: black;
+	}
+
+	#botleft {
+		left: 150px;
+		top: 1000px;
+	}
+	#botright {
+		left: 150px;
+		top: 1450px;
+	}
+	
+  }
+
+
 h2 span { 
 	color: white; 
 	font: bold 24px/45px Helvetica, Sans-Serif; 
