@@ -67,3 +67,7 @@ header{
     position: relative;
 }
 
+.body-header
+{
+    float: left;
+}
