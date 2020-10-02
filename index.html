@@ -23,7 +23,18 @@
 
       <h2>Plant Pathology</h2>
       
-      <p> The plot shown to the right is a pretty typical example of what I might have been expected to do on an average day at the Plant Path lab.  This is the visual output of whats known as Non-Metric Multidimenional Scaling (NMDS), a popular procedure performed in ecology when you are interested in differences between samples.  If you are aware of Principal Component Analysis (PCA), I would describe this as a similar procedure but for a distance matrix rather than a feature matrix.   NMDS seeks to find the directions of greatest variance in order to reduce the dimensionality of the data and allow us to visualize any clustering that might be happening.  In other words it's a method that allows us to see if our treatments and sample types vary together, or at random.  </p><img id="nmds-image" src= 'assets/nmds_deid.png' alt="image missing">
+      <p> The plot shown below is a pretty typical example of what I might have been expected to do on an average day at the Plant Path lab.  This is the visual output of whats known as Non-Metric Multidimenional Scaling (NMDS), a popular procedure performed in ecology when you are interested in differences between samples.  If you are aware of Principal Component Analysis (PCA), I would describe this as a similar procedure but for a distance matrix rather than a feature matrix.   NMDS seeks to find the directions of greatest variance in order to reduce the dimensionality of the data and allow us to visualize any clustering that might be happening.  In other words it's a method that allows us to see if our treatments and sample types vary together, or at random.  </p>
+      <img id="plots" src= 'assets/nmds_deid.png' alt="image missing">
+      
+      <h2>Deep Learning Experiment </h2>
+      <h3>Feature Representation With Small Sample Sizes in Convolutional Neural Networks</h3>
+      
+      <p>The thesis for my Masters details the motivation, research, approach, procedure, and results of a two part project completed in the Spring of 2019 at the University of Minnesota.  This project started out as a contract job for a local company called LAB 651 where we explored deep learning solutions to automated defect detection.  About two months into the job it was realized that training data would not be sufficient by June 2019, and this project would need to be modified to become meaningful.  Anticipating that LAB 651 may need to contend with small sample sizes, we performed a small experiment to see if using different models in the last layer of a Convolutional Neural Network (CNN) could help to battle small sample sizes.  The alternate models included a Random Forest Classifier and a Support Vector Classifier.  Results suggest that they do slightly better on a complex network, and noticeably better on a less complex network. </p>
+
+      <p> Results below show the comparison in mean accuracy over 5 model fits at each sample size, each model was fit on a random sample taken from the whole training dataset, as well as the standard error.</p>
+      
+      <img id="plots" src= 'assets/results_plot.png' alt="image missing">
+      <img id="plots" src= 'assets/results_ciphar_se_plot.png' alt="image missing">
     </section>
 
     <aside id="contact-info">
