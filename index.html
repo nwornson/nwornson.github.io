@@ -19,6 +19,7 @@
         <h2 id="bio-name">Nick Wornson</h2>
         <img id="bio-image" src="self.jpg" alt="Nick Wornson">
       </section>
+
       <p> A graduate of the Masters in Statistics program at the University of Minnesota in summer 2019, I have a passion for leveraging data-driven insights.  I have done a lot of work with a research lab in the Dept. of Plant Pathology at the UMN for the last three years, where the lab performs various experiments, then passes the data off to me for ETL and statistical analysis.  At this point in time, all the data and associated analyses are proprietary to the U of M so data will not be included here.  I have also helped teach an evening course in Data Visualization, where we teach students a variety of tools ranging from Excel and VBA to Python to Web design.  In addition to Data Science, I also enjoy soccer, frisbee golf, science-fiction and cooking.  This page is meant to contain a few of my professional and personal projects from the last two years.  </p>
 
       <h2>Plant Pathology</h2>
@@ -31,21 +32,25 @@
       
       <p>The thesis for my Masters details the motivation, research, approach, procedure, and results of a two part project completed in the Spring of 2019 at the University of Minnesota.  This project started out as a contract job for a local company called LAB 651 where we explored deep learning solutions to automated defect detection.  About two months into the job it was realized that training data would not be sufficient by June 2019, and this project would need to be modified to become meaningful.  Anticipating that LAB 651 may need to contend with small sample sizes, we performed a small experiment to see if using different models in the last layer of a Convolutional Neural Network (CNN) could help to battle small sample sizes.  The alternate models included a Random Forest Classifier and a Support Vector Classifier.  Results suggest that they do slightly better on a complex network, and noticeably better on a less complex network. </p>
 
-      <p> Results below show the comparison in mean accuracy over 5 model fits at each sample size, each model was fit on a random sample taken from the whole training dataset, as well as the standard error.</p>
+      <p> Results below show the comparison in accuracy over 5 model fits at each sample size, each model was fit on a random sample taken from the whole training dataset, as well as a plot of the standard errors.  The above graphic shows the results from a more complex CNN model, the lower showing a less complex CNN where the difference in models used on the feature representation can be visibly distinguished.</p>      
+
       
       <div id = 'chart1'></div>
-          </section>
 
-    <aside id="contact-info">
-      <h2>Contact Info</h2>
-      <ul>
-        <li><strong>Email:</strong> <a href="mailto:nick.wornson@gmail.com" target="_blank">Nick.Wornson@gmail.com</a></li>
-        <li><strong>Github:</strong> <a href="https://github.com/nwornson" target="_blank">nwornson</a></li>
-        <li><strong>Linkedin:</strong> <a href="https://linkedin.com/in/nick-wornson-26b8826a" target="_blank">Nick Wornson</a></li>
-        <li><strong></strong> <a href="gallery/index.html" target="_blank">Photo Gallery</a></li>
+      <div id = 'chart2'></div>
+    </section>
+        <aside id="contact-info">
+          <h2>Contact Info</h2>
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:nick.wornson@gmail.com" target="_blank">Nick.Wornson@gmail.com</a></li>
+            <li><strong>Github:</strong> <a href="https://github.com/nwornson" target="_blank">nwornson</a></li>
+            <li><strong>Linkedin:</strong> <a href="https://linkedin.com/in/nick-wornson-26b8826a" target="_blank">Nick Wornson</a></li>
+            <li><strong></strong> <a href="gallery/index.html" target="_blank">Photo Gallery</a></li>
+    
+          </ul>
+        </aside>
 
-      </ul>
-    </aside>
+
   </main>
   <script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>

@@ -3,8 +3,8 @@
 //  Currently lines do not transition, the previous one is removed and the new one is rendered.
 
 
-
-var svgWidth = 960;
+// prev svgWidth 960
+var svgWidth = 800;
 var svgHeight = 500;
 
 var margin = {

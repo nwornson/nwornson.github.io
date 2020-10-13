@@ -3,7 +3,7 @@
 
 
 
-var svg2Width2 = 960;
+var svg2Width2 = 800;
 var svg2Height2 = 500;
 
 var margin2 = {
