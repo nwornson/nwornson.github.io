@@ -2,7 +2,7 @@
     border-radius: 8px;
   }
   
-  .chart::before {
+  .chart1::before {
     position: absolute;
     top: 50px;
     left: 300px;
@@ -64,6 +64,10 @@
     stroke-width: 2px;
   }
   
+  .line2 {
+    fill: none;
+    stroke-width: 2px;
+  }
   .orange {
     stroke: orange;
   }
@@ -71,5 +75,15 @@
   .green {
     stroke: green;
   }
+
+  #chart1 {
+    position: relative;
+  }
+ 
+#chart2 {
+  position: relative;
+
+}
+  
   
   

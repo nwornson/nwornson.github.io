@@ -1,47 +1,48 @@
 // creates circles that transition, fit line using data saved from fitting  a loess spline in R.
 
-//  Currently lines do not transition, the previous one is removed and the new one is rendered.
 
 
 
-var svgWidth = 960;
-var svgHeight = 500;
+var svg2Width2 = 960;
+var svg2Height2 = 500;
 
-var margin = {
+var margin2 = {
   top: 20,
   right: 40,
   bottom: 80,
   left: 100
 };
 
-var width = svgWidth - margin.left - margin.right;
-var height = svgHeight - margin.top - margin.bottom;
+var width2 = svg2Width2 - margin2.left - margin2.right;
+var height2 = svg2Height2 - margin2.top - margin2.bottom;
 
-// Create an SVG wrapper, append an SVG group that will hold our chart,
-// and shift the latter by left and top margins.
-var svg = d3
-  .select("#chart1")
+// Create an svg2 wrapper, append an svg2 group that will hold our chart,
+// and shift the latter by left and top margin2s.
+var svg2 = d3
+  .select("#chart2")
   .append("svg")
-  .attr("width", svgWidth)
-  .attr("height", svgHeight);
+  .attr("width", svg2Width2)
+  .attr("height", svg2Height2);
 
-// Append an SVG group
-var chartGroup = svg.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+// Append an svg2 group
+var chartGroup2 = svg2.append("g")
+  .attr("transform", `translate(${margin2.left}, ${margin2.top})`);
 
 // Initial Params
-var chosenYaxis = "m";
-var chosenLine = 'mfit';
+var chosenYaxis2 = "m";
+var chosenLine2 = 'mfit';
+
+
 
 
 // function used for updating y-scale var upon click on axis label
-function yScale(nnData, chosenYaxis) {
+function yScale(nnData, chosenYaxis2) {
   // create scales
   var yLinearScale = d3.scaleLinear()
-    .domain([d3.max(nnData, d => d[chosenYaxis]) * 1.2,
-      d3.min(nnData, d => d[chosenYaxis]) * .8
+    .domain([d3.max(nnData, d => d[chosenYaxis2]) * 1.2,
+      d3.min(nnData, d => d[chosenYaxis2]) * .8
     ])
-    .range([0,height]);
+    .range([0,height2]);
 
   return yLinearScale;
 
@@ -60,27 +61,25 @@ function renderAxes(newYScale, yAxis) {
 
 // function used for updating circles group with a transition to
 // new circles
-function renderCircles(circlesGroup, newYScale, chosenYaxis) {
+function renderCircles(circlesGroup2, newYScale, chosenYaxis2) {
 
-  circlesGroup.transition()
+  circlesGroup2.transition()
     .duration(1000)
-    .attr("cy", d => newYScale(d[chosenYaxis]));
+    .attr("cy", d => newYScale(d[chosenYaxis2]));
 
-  return circlesGroup;
+  return circlesGroup2;
 }
 
 
 // function used for updating circles group with new tooltip
 
-/* 
-long form comment
-*/
 
-function updateToolTip(chosenYaxis, circlesGroup) {
+
+function updateToolTip(chosenYaxis2, circlesGroup2) {
 
    var label;
 
-   if (chosenYaxis === "m") {
+   if (chosenYaxis2 === "m") {
      label = "Mean Acc:";
 
    }
@@ -92,14 +91,14 @@ function updateToolTip(chosenYaxis, circlesGroup) {
      .attr("class", "tooltip")
      .offset([80, -60])
      .html(function(d) {
-       return (`${d.samplesize}<br>${label} ${d[chosenYaxis]}<br>Model:${d['model']}`);
+       return (`${d.samplesize}<br>${label} ${d[chosenYaxis2]}<br>Model:${d['model']}`);
 
  
      });
 
-   circlesGroup.call(toolTip);
+   circlesGroup2.call(toolTip);
 
-   circlesGroup.on("mouseover", function(data) {
+   circlesGroup2.on("mouseover", function(data) {
      toolTip.show(data);
    })
      // onmouseout event
@@ -107,11 +106,13 @@ function updateToolTip(chosenYaxis, circlesGroup) {
        toolTip.hide(data);
      });
 
-   return circlesGroup;
+   return circlesGroup2;
  } 
 
+
+
 // Retrieve data from the CSV file and execute everything below
-d3.csv("static/ciphar_data_spread_100320.csv").then(function(nnData, err) {
+d3.csv("static/red_ciphar_data_spread_100920.csv").then(function(nnData, err) {
   if (err) throw err;
 
   // parse data
@@ -124,40 +125,40 @@ d3.csv("static/ciphar_data_spread_100320.csv").then(function(nnData, err) {
   });
 
   // grouped data
-  var gdata = d3.nest()
+  var gdata2 = d3.nest()
   .key(function(d) { return d.model})
   .entries(nnData)
 
   // xLinearScale function above csv import
-  var yLinearScale = yScale(nnData, chosenYaxis);
+  var yLinearScale2 = yScale(nnData, chosenYaxis2);
 
   // Create x scale function
-  var xLinearScale = d3.scaleLinear()
+  var xLinearScale2 = d3.scaleLinear()
     .domain([0, d3.max(nnData, d => d.samplesize)])
-    .range([0, width]);
+    .range([0, width2]);
 
   // Create initial axis functions
-  var bottomAxis = d3.axisBottom(xLinearScale);
-  var leftAxis = d3.axisLeft(yLinearScale);
+  var bottomAxis = d3.axisBottom(xLinearScale2);
+  var leftAxis = d3.axisLeft(yLinearScale2);
 
   // append y axis
-  var yAxis = chartGroup.append("g")
+  var yAxis2 = chartGroup2.append("g")
     .classed("y-axis", true)
     //.attr("transform", `translate(0, ${width})`)
     .call(leftAxis);
 
   // append x axis
-  chartGroup.append("g")
-    .attr("transform", `translate(0, ${height})`)
+  chartGroup2.append("g")
+    .attr("transform", `translate(0, ${height2})`)
     .call(bottomAxis);
 
   // append initial circles
-  var circlesGroup = chartGroup.selectAll("circle")
+  var circlesGroup2 = chartGroup2.selectAll("circle")
     .data(nnData)
     .enter() 
     .append("circle")
-    .attr("cx", d => xLinearScale(d.samplesize))
-    .attr("cy", d => yLinearScale(d[chosenYaxis]))
+    .attr("cx", d => xLinearScale2(d.samplesize))
+    .attr("cy", d => yLinearScale2(d[chosenYaxis2]))
     .attr("r", 5)
     .attr("fill", function(d,i) {
       return d['color']
@@ -166,41 +167,41 @@ d3.csv("static/ciphar_data_spread_100320.csv").then(function(nnData, err) {
   
 
     // Create group for two y-axis labels
-  var labelsGroup = chartGroup.append("g")
-    .attr("transform", `translate(0, ${height/2})`);
+  var labelsGroup2 = chartGroup2.append("g")
+    .attr("transform", `translate(0, 0)`);
 
-  var mean_acc = labelsGroup.append("text")
+  var mean_acc2 = labelsGroup2.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("x", 0 - margin.top)
+    .attr("x", 0 - height2/2)
     .attr("y", 0 - 40)
     .attr("value", "m") // value to grab for event listener
     .classed("active", true)
     .text("Mean Accuracy");
 
-  var se_acc = labelsGroup.append("text")
+  var se_acc2 = labelsGroup2.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("x", 0 - margin.top)
+    .attr("x", 0 - height2/2)
     .attr("y", 0 - 60)
     .attr("value", "s") // value to grab for event listener
     .classed("inactive", true)
     .text("Standard Error");
 
   // append x axis
-  chartGroup.append("text")
+  chartGroup2.append("text")
  
-    .attr("y", height + 40)
-    .attr("x", width/2)
+    .attr("y", height2 + 40)
+    .attr("x", width2/2)
     .attr("dx", "1em")
     .classed("axis-text", true)
     .text("Sample Size");
 
   // updateToolTip function above csv import
-  var circlesGroup = updateToolTip(chosenYaxis, circlesGroup);
+  var circlesGroup2 = updateToolTip(chosenYaxis2, circlesGroup2);
 
   
  // legend
 
- var res = gdata.map(function(d){ return d.key })
+ var res = gdata2.map(function(d){ return d.key })
 
  var color = d3.scaleOrdinal()
  .domain(res)
@@ -208,26 +209,26 @@ d3.csv("static/ciphar_data_spread_100320.csv").then(function(nnData, err) {
 var legendRectSize = 18;                                 
 var legendSpacing = 4;                                   
 
-var legend = chartGroup.selectAll('.legend')                     
+var legend2 = chartGroup2.selectAll('.legend')                     
 .data(color.domain())                                   
 .enter()                                                
 .append('g')                                            
 .attr('class', 'legend')                                
 .attr('transform', function(d, i) {                     
   var height = legendRectSize + legendSpacing;          
-  var offset =  height * color.domain().length / 2;     
+  var offset =  height2 * color.domain().length / 2;     
   var horz = 2 * legendRectSize;                       
   var vert = i * height;                       
   return 'translate(' + horz + ',' + vert + ')';        
 });                                                     
 
-legend.append('rect')                                   
+legend2.append('rect')                                   
 .attr('width', legendRectSize)                          
 .attr('height', legendRectSize)                         
 .style('fill', color)                                   
 .style('stroke', color);                                
 
-legend.append('text')                                   
+legend2.append('text')                                   
 .attr('x', legendRectSize + legendSpacing)              
 .attr('y', legendRectSize - legendSpacing)              
 .text(function(d) { return d; }); 
@@ -236,17 +237,17 @@ legend.append('text')
 
   // line
 
-  var curve1 = d3.line()
-    .x(d => xLinearScale(d.samplesize))
-    .y(d => yLinearScale(d[chosenLine]))
+  var curve2 = d3.line()
+    .x(d => xLinearScale2(d.samplesize))
+    .y(d => yLinearScale2(d[chosenLine2]))
     .curve(d3.curveBasisOpen);
 
 
-  gdata.forEach(function(d,i) {
-    var pathData = curve1(d.values);
-    chartGroup.append('path')
+  gdata2.forEach(function(d,i) {
+    var pathData = curve2(d.values);
+    chartGroup2.append('path')
       .attr('d',pathData)
-      .classed('line',true)
+      .classed('line2',true)
 
     //console.log(d.values[0]['color'])
     
@@ -261,89 +262,88 @@ legend.append('text')
   })
 
   // x axis labels event listener
-  labelsGroup.selectAll("text")
+  labelsGroup2.selectAll("text")
     .on("click", function() {
       // get value of selection
-      var fitted;
-      var value = d3.select(this).attr("value");
+      var value2 = d3.select(this).attr("value");
       //console.log(value);
-      if (value !== chosenYaxis) {
+      if (value2 !== chosenYaxis2) {
 
-        // replaces chosenYaxis with value
-        chosenYaxis = value;
+        // replaces chosenYaxis2 with value
+        chosenYaxis2 = value2;
         
-        if (chosenYaxis == 'm') {
-          chosenLine = 'mfit';
+        if (chosenYaxis2 == 'm') {
+          chosenLine2 = 'mfit';
         } else {
-          chosenLine = 'sfit';
+          chosenLine2 = 'sfit';
         }
        
 
-        // console.log(chosenYaxis)
+        // console.log(chosenYaxis2)
 
         // functions here found above csv import
         // updates x scale for new data
-        yLinearScale = yScale(nnData, chosenYaxis);
+        yLinearScale2 = yScale(nnData, chosenYaxis2);
 
         // updates x axis with transition
-        yAxis = renderAxes(yLinearScale, yAxis);
+        yAxis2 = renderAxes(yLinearScale2, yAxis2);
 
         // updates circles with new y values
-        circlesGroup = renderCircles(circlesGroup, yLinearScale, chosenYaxis);
+        circlesGroup2 = renderCircles(circlesGroup2, yLinearScale2, chosenYaxis2);
         
         // updates tooltips with new info
-        circlesGroup = updateToolTip(chosenYaxis, circlesGroup);
+        circlesGroup2 = updateToolTip(chosenYaxis2, circlesGroup2);
 
 
         // changes classes to change bold text
-        if (chosenYaxis === "m") {
-            mean_acc
+        if (chosenYaxis2 === "m") {
+            mean_acc2
             .classed("active", true)
             .classed("inactive", false);
-            se_acc
+            se_acc2
             .classed("active", false)
             .classed("inactive", true);
         }
         else {
-            mean_acc
+            mean_acc2
             .classed("active", false)
             .classed("inactive", true);
-            se_acc
+            se_acc2
             .classed("active", true)
             .classed("inactive", false);
         }
           // line
           
-          d3.selectAll("path.line").remove();
+          d3.selectAll("path.line2").remove();
 
           
 
         // line
-        var curve1 = d3.line()
-          .x(d => xLinearScale(d.samplesize))
-          .y(d => yLinearScale(d[chosenLine]))
+        var curve2 = d3.line()
+          .x(d => xLinearScale2(d.samplesize))
+          .y(d => yLinearScale2(d[chosenLine2]))
           .curve(d3.curveBasisOpen);
 
-        gdata.forEach(function(d,i) {
-        var pathData = curve1(d.values);
-        chartGroup.append('path')
+        gdata2.forEach(function(d,i) {
+        var pathData = curve2(d.values);
+        chartGroup2.append('path')
           .attr('d',pathData)
-          .classed('line',true)
+          .classed('line2',true)
           .attr("stroke", function(d,j) {
             return  color(i);
     
           });
 
         })
-        //   var curve1 = d3.line()
+        //   var curve2 = d3.line()
         //   .x(d => xLinearScale(d.samplesize))
         //   .y(d => yLinearScale(d[fitted]))
         //   .curve(d3.curveBasisOpen);
         
         // // append path for line
-        // chartGroup
+        // chartGroup2
         //   .append('path')
-        //   .attr('d',curve1)
+        //   .attr('d',curve2)
         //   .classed('line orange',true)
         //   .transition()
         //   .duration(1000)
