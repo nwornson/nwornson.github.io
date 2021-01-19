@@ -16,7 +16,7 @@
 <main class="container">
     <section id="main-bio">
       <section id="figure">
-        <!--<h2 id="bio-name">Nick Wornson</h2>-->
+        
         <img id="bio-image" src="self.jpg" alt="Nick Wornson">
       </section>
 
@@ -26,6 +26,17 @@
       
       <p> The plot shown below is a pretty typical example of what I might have been expected to do on an average day at the Plant Path lab.  This is the visual output of whats known as Non-Metric Multidimenional Scaling (NMDS), a popular procedure performed in ecology when you are interested in differences between samples.  If you are aware of Principal Component Analysis (PCA), I would describe this as a similar procedure but for a distance matrix rather than a feature matrix.   NMDS seeks to find the directions of greatest variance in order to reduce the dimensionality of the data and allow us to visualize any clustering that might be happening.  In other words it's a method that allows us to see if our treatments and sample types vary together, or at random.  </p>
       <img id="plots" src= 'assets/nmds_deid.png' alt="image missing">
+      
+      <h2>Flu Shot Learning: Predict H1N1 and Seasonal Flu Vaccines</h2>
+
+      <p>This is a data competition put on by DrivenData where competitors are challenged to predict the probability that an individual would receive an h1n1 and/or a seasonal flu vaccine.  The competition can be found <a href="https://www.drivendata.org/competitions/66/flu-shot-learning/" target="_blank">here</a>.  The data, mostly opinions and behaviors such as flu concern and mask behavior as well as demographics, contains 36 total columns and 26707 observations. </p>
+
+      <p> The competition is purely predictive, so as of yet I have not produced any inference or data visualizations.  Challenges here include missing data, selecting the best model and efficiently coding for two response variables.  Currently I place ~300 out of ~1700 with a score of .8356, the top score being about .866.  Scoring is computed using area under the ROC curve and averaged over seasonal and h1n1.  All my work can be found in this <a href=”https://github.com/nwornson/DrivenData-Flu-Shot-Predictions”" target="_blank">repo</a>  below are R markdown files looking at a couple different approaches to prediction: </p>   
+
+      <a href="assets\elastic_cv.html"  target="_blank">Elastic-Net Logistic Regression</a>  <br>
+
+      <a href="assets\xgboost.html"  target="_blank">Gradient Boosting with Cross-Validation</a>  
+      
       
       <h2>Deep Learning Experiment </h2>
       <h3>Feature Representation With Small Sample Sizes in Convolutional Neural Networks</h3>
