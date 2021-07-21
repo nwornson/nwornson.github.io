@@ -24,8 +24,18 @@
 
       <h2>Plant Pathology</h2>
       
-      <p> The plot shown below is a pretty typical example of what I might have been expected to do on an average day at the Plant Path lab.  This is the visual output of whats known as Non-Metric Multidimenional Scaling (NMDS), a popular procedure performed in ecology when you are interested in differences between samples.  If you are aware of Principal Component Analysis (PCA), I would describe this as a similar procedure but for a distance matrix rather than a feature matrix.   NMDS seeks to find the directions of greatest variance in order to reduce the dimensionality of the data and allow us to visualize any clustering that might be happening.  In other words it's a method that allows us to see if our treatments and sample types vary together, or at random.  </p>
-      <img id="plots" src= 'assets/nmds_deid.png' alt="image missing">
+      <p> What can we learn about the interaction between microbes using optical density readings and genetic composition?  Generally speaking, that was the main question my lab sought to explore.  Sorting through a flurry of scientific terms I had never before heard in my life, I was to perform the data work in support of their research, and advise on statistical methodology.   </p>
+
+      <p> The experiment that I primarily worked on consisted of samples from a research field here in Minnesota.  Across the field were plots (blocks) and within each plot were soil amended plants and control plants crossed with two separate species in sub-plots.  Samples were collected from each sub-plot and examined in the lab for nutrient consumption, inhibition, genetic composition, and a few other measures.  Nutreint consumption was of special interest, not only to us, but to other labs as well.  The process involves using a machine to expose a sample to 85 different nutrients plus a control and record the optical density (ODS).  My first challenge was ETL (Extract, Transform, Load).  I had to aggregate all of the raw xlsx output files from each sample, aggregate them, and merge the resulting data set with experiment data (treatment, species, plot, subplot).  After that we had a few different metrics we were interested in including the number of ODS readings that a given sample scored above a threshold, the mean and variance of ODS readings for a given sample, and whats called Percent Niche Overlap (PNO).  PNO is a useful proxy for measuring competition between microbes.  Mathematically, for samples X and Y, we can calculate Y overlapping X over k isolates using this formula:</p>          
+      
+      <img class='formula' src="assets/equation.png"/>
+      <p>Applying this formula to each isolate combination effectively gives us a distance matrix.  
+        Presented with data of this structure, and given we have two types and a treatment, we can apply an unsupervised 
+        learning method such as NMDS (Non-metric Multi-Dimensional Scaling), which is common in fields such as Ecology where we want to study community interaction.
+        NMDS can give us a visual idea of common variation within and between treatment groups.  Below is an example of an visualizing the first two MDS vector output,
+        in this case using euclidean distance between
+        pairwise ODS readings.</p>
+      <img class='formula' src= 'assets/nmds_deid.png' alt="image missing">
       
       <h2>Flu Shot Learning: Predict H1N1 and Seasonal Flu Vaccines</h2>
 

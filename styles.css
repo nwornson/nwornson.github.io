@@ -63,6 +63,14 @@ header{
     left: 15;
 }
 
+.formula
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
 #figure
 {
     position: relative;
